@@ -6,7 +6,6 @@ import re
 
 with open((__file__.rstrip("code.py") + "input.txt"), 'r') as input_file:
     input = input_file.readlines()
-print(input)
 
 # Corrects the input, by splitting on each empty line
 correctInput = []

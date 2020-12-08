@@ -3,6 +3,7 @@
 # Date = December 2020
 
 import math
+import time
 
 with open((__file__.rstrip("code.py") + "input.txt"), 'r') as input_file:
     input = input_file.readlines()
