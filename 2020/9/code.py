@@ -2,10 +2,6 @@
 # Author = Stijn-Jacobs
 # Date = December 2020
 
-from operator import itemgetter
-from itertools import groupby
-
-
 with open((__file__.rstrip("code.py") + "input.txt"), 'r') as input_file:
     input = input_file.readlines()
 
