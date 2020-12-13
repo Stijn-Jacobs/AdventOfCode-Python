@@ -35,6 +35,7 @@ class Arrangement:
 
     def get_valid_arrangements_count(self):
         c = Counter({0: 1})
+        print(self.contents)
         for x in self.contents:
             c[x + 1] += c[x]
             c[x + 2] += c[x]
