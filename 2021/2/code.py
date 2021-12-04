@@ -14,21 +14,20 @@ def move_ship(inp, use_aim):
         split = line.split(" ")
         operator = split[0]
         amount = int(split[1])
-        match operator:
-            case "forward":
-                horizon_pos += amount
-                if use_aim:
-                    depth += (aim * amount)
-            case "up":
-                if use_aim:
-                    aim -= amount
-                else:
-                    depth -= amount
-            case "down":
-                if use_aim:
-                    aim += amount
-                else:
-                    depth += amount
+        if operator == "forward":
+            horizon_pos += amount
+            if use_aim:
+                depth += (aim * amount)
+        elif operator == "up":
+            if use_aim:
+                aim -= amount
+            else:
+                depth -= amount
+        elif operator == "down":
+            if use_aim:
+                aim += amount
+            else:
+                depth += amount
     return depth * horizon_pos
 
 
