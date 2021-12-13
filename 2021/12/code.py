@@ -35,11 +35,8 @@ def load_caves():
 
 def find_paths(curpath="start", small_caves_visited={}, allowed_twice=None):
     cur_cave = caves[curpath]
-    if (curpath.islower() and curpath not in small_caves_visited) or allowed_twice:
-        small_caves_visited[cur_cave.name] = small_caves_visited.get(cur_cave.name, 0) + 1
+    small_caves_visited[cur_cave.name] = small_caves_visited.get(cur_cave.name, 0) + 1
     paths = []
-    if curpath == "end":
-        paths.append(curpath)
     for con in cur_cave.connections:
         if con.name == "end":
             paths.append(curpath + ",end")
@@ -52,6 +49,7 @@ def find_paths(curpath="start", small_caves_visited={}, allowed_twice=None):
     return paths
 
 
+# Kinda bruteforce solution, still fast enough.
 def part2():
     # Get all possible double visitable caves, and combine all the results, in a a set so no dupes.
     lowercase_caves = set()
