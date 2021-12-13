@@ -6,7 +6,7 @@ with open((__file__.rstrip("code.py") + "input.txt"), 'r') as input_file:
     input = input_file.readline()
 
 
-def find_least_movements_position(inp, exponential):
+def find_least_movements_position(inp, exponential=False):
     arr = list(map(int, inp.split(",")))
     fuels_spent_arr = []
 
@@ -23,6 +23,6 @@ def find_least_movements_position(inp, exponential):
     return min(fuels_spent_arr)
 
 
-print("Part One : " + str(find_least_movements_position(input, False)))
+print("Part One : " + str(find_least_movements_position(input)))
 
 print("Part Two : " + str(find_least_movements_position(input, True)))

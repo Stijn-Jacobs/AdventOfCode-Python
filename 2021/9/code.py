@@ -43,7 +43,7 @@ def calculate_risk_score():
 # Returns basin size from from current position
 def spread(x, y, explored_map):
     # Check if already checked, and if in bounds
-    if explored_map.get((x, y), False) is True:
+    if explored_map.get((x, y), False):
         return 0
     spread_sum = 0
     explored_map[(x, y)] = True
