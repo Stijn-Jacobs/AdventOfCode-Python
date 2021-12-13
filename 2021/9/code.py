@@ -33,7 +33,7 @@ def get_lowest_points():
     return points
 
 
-def part1():
+def calculate_risk_score():
     risk = 0
     for point in get_lowest_points():
         risk += map[point[1]][point[0]] + 1
@@ -43,7 +43,7 @@ def part1():
 # Returns basin size from from current position
 def spread(x, y, explored_map):
     # Check if already checked, and if in bounds
-    if map[(y, x)] == 9 or explored_map.get((x, y), False) is True or x < 0 or y < 0 or x > len(map[y]) or y > len(map):
+    if explored_map.get((x, y), False) is True:
         return 0
     spread_sum = 0
     explored_map[(x, y)] = True
@@ -60,7 +60,7 @@ def spread(x, y, explored_map):
     return spread_sum + 1
 
 
-def part2():
+def find_largests_basins():
     basin_sizes = []
     for point in get_lowest_points():
         size = spread(point[0], point[1], {})
@@ -70,6 +70,6 @@ def part2():
     return basin_sizes[0] * basin_sizes[1] * basin_sizes[2]
 
 
-print("Part One : " + str(part1()))
+print("Part One : " + str(calculate_risk_score()))
 
-print("Part Two : " + str(part2()))
+print("Part Two : " + str(find_largests_basins()))
