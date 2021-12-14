@@ -20,20 +20,29 @@ def get_polymer_input(inp):
 def template_score_after_steps(inp, steps):
     starting, rules = get_polymer_input(inp)
 
+    pairs = dict(zip([starting[i] + starting[i + 1] for i in range(0, len(starting) - 1)],
+                 [1 for x in range(0, len(starting) - 1)]))
+    characters = dict()
+    for char in starting:
+        characters[char] = characters.get(char, 0) + 1
+
     i = 0
     while i < steps:
         i += 1
-        new = []
-        prev = ""
-        for char in starting:
-            new += rules.get(prev + char, "")
-            new += char
-            prev = char
-        starting = new
+        copy = pairs.copy()
+        for pair in copy:
+            to_add = rules[pair]
+            if to_add:
+                count = copy[pair]
+                # Remove pair since we gonna add something in the middle
+                pairs[pair] = pairs.get(pair, 0) - count
 
-    counter = Counter(starting)
-    counter_values = counter.values()
-    return max(counter_values) - min(counter_values)
+                pairs[pair[0] + to_add] = pairs.get(pair[0] + to_add, 0) + count
+                pairs[to_add + pair[1]] = pairs.get(to_add + pair[1], 0) + count
+                characters[to_add] = characters.get(to_add, 0) + count
+
+    values = characters.values()
+    return max(values) - min(values)
 
 
 print("Part One : " + str(template_score_after_steps(input, 10)))
