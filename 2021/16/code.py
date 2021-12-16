@@ -32,7 +32,6 @@ class Packet:
                     self._value = int(literal_value_binary, 2)
                     return (group * 5) + 5
         else:
-            # Ignore operators for now
             length_id = int(inp[0])
             inp = inp[1:]
             if length_id == 0:
@@ -41,9 +40,7 @@ class Packet:
                 inp = inp[15:]
                 length_sum = 0
                 while length_sum < length:
-                    packet = Packet(inp[length_sum:])
-                    self.sub_packets.append(packet)
-                    length_sum += packet.packet_length()
+                    length_sum += self.create_sub_packet(inp[length_sum:])
                 return length_sum + 1 + 15
             else:
                 # Next 11 bits indicate the amount of sub-packets
@@ -51,10 +48,13 @@ class Packet:
                 inp = inp[11:]
                 index = 0
                 for i in range(0, amount):
-                    packet = Packet(inp[index:])
-                    self.sub_packets.append(packet)
-                    index += packet.packet_length()
+                    index += self.create_sub_packet(inp[index:])
                 return index + 1 + 11
+
+    def create_sub_packet(self, binary):
+        packet = Packet(binary)
+        self.sub_packets.append(packet)
+        return packet.packet_length()
 
     def packet_length(self):
         return self.length + 6
@@ -80,10 +80,7 @@ class Packet:
         return None
 
     def version_sum(self):
-        version_sum = 0
-        for packet in self.sub_packets:
-            version_sum += packet.version_sum()
-        return version_sum + self.version
+        return sum([packet.version_sum() for packet in self.sub_packets]) + self.version
 
 
 def binary_representation(inp):

@@ -17,10 +17,7 @@ def get_lowest_risk_path(map):
     start = grid.node(0, 0)
     end = grid.node(len(map[0]) - 1, len(map) - 1)
     path, runs = finder.find_path(start, end, grid)
-    sum = 0
-    for node in path[1:]:
-        sum += map[node[1]][node[0]]
-    return sum
+    return sum([map[node[1]][node[0]] for node in path[1:]])
 
 
 def get_map(inp):
@@ -50,6 +47,6 @@ def get_full_map(inp):
     return map
 
 
-print("Part One :" + str(get_lowest_risk_path(get_map(input))))
+print("Part One : " + str(get_lowest_risk_path(get_map(input))))
 
-print("Part Two :" + str(get_lowest_risk_path(get_full_map(input))))
+print("Part Two : " + str(get_lowest_risk_path(get_full_map(input))))

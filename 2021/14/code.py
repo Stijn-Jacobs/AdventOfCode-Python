@@ -10,7 +10,7 @@ with open((__file__.rstrip("code.py") + "input.txt"), 'r') as input_file:
 
 def get_polymer_input(inp):
     starting = inp[0].strip()
-    rules_dict = {}
+    rules_dict = dict()
     for rule in inp[2:]:
         split = rule.strip().split(" -> ")
         rules_dict[split[0]] = split[1]

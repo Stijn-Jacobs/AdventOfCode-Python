@@ -82,7 +82,7 @@ def part2(inp):
     for y in range(0, len(map)):
         for x in range(0, len(map[y])):
             char = map[y][x]
-            response += str(char) if char == 1 else " "
+            response += "#" if char == 1 else " "
         response += "\n"
     return response
 
