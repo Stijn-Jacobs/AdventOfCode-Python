@@ -21,7 +21,7 @@ def template_score_after_steps(inp, steps):
     starting, rules = get_polymer_input(inp)
 
     pairs = dict(zip([starting[i] + starting[i + 1] for i in range(0, len(starting) - 1)],
-                 [1 for x in range(0, len(starting) - 1)]))
+                     [1 for _ in range(0, len(starting) - 1)]))
     characters = dict()
     for char in starting:
         characters[char] = characters.get(char, 0) + 1
