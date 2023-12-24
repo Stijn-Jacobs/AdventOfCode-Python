@@ -19,6 +19,8 @@ def calc(tim, dist):
         for j in range(0, tim[i] + 1):
             if (tim[i] - j) * j > dist[i]:
                 possibilities += 1
+            elif possibilities != 0:
+                break
 
         sum *= possibilities
 
@@ -30,7 +32,7 @@ def part1():
 
 
 def part2():
-    # merge all times together as they where strings
+    # merge all times together as they were strings
     times_p2 = [int("".join([str(i) for i in times]))]
     distances_p2 = [int("".join([str(i) for i in distances]))]
 
