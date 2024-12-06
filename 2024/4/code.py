@@ -33,7 +33,7 @@ def solve1(input):
                     # check bounds, and skip the current position
                     if off_x == 0 and off_y == 0:
                         continue
-                    for delta in range(0, len(word)):
+                    for delta in range(1, len(word)):
                         if check_adjacent(map, x, y, off_x * delta, off_y * delta, word[delta]):
                             if delta == len(word) - 1:
                                 sum += 1
