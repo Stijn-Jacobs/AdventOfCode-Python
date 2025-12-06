@@ -70,8 +70,6 @@ def part_2():
         elif map[len(map) - 1][col][0] == "+":
             total += sum(nums)
 
-
-    print(map)
     return total
 
 print(part_1())
